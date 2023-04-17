@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Coupe Champignon",
+    "additional": false
+  },
+  {
+    "id": 2,
+    "name": "Coupe Fleur",
+    "additional": false
+  },
+  {
+    "id": 3,
+    "name": "Coupe Étoile",
+    "additional": false
+  },
+  {
+    "id": 4,
+    "name": "Coupe Spéciale",
+    "additional": false
+  },
+  {
+    "id": 5,
+    "name": "Coupe Carapace",
+    "additional": false
+  },
+  {
+    "id": 6,
+    "name": "Coupe Banane",
+    "additional": false
+  },
+  {
+    "id": 7,
+    "name": "Coupe Feuille",
+    "additional": false
+  },
+  {
+    "id": 8,
+    "name": "Coupe Éclair",
+    "additional": false
+  },
+  {
+    "id": 9,
+    "name": "Coupe Œuf",
+    "additional": false
+  },
+  {
+    "id": 10,
+    "name": "Coupe Triforce",
+    "additional": false
+  },
+  {
+    "id": 11,
+    "name": "Coupe Crossing",
+    "additional": false
+  },
+  {
+    "id": 12,
+    "name": "Coupe Clochette",
+    "additional": false
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "117443118028",
+    "project_id": "goomba-c4427",
+    "storage_bucket": "goomba-c4427.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:117443118028:android:f7c9821838c80563df1369",
+        "android_client_info": {
+          "package_name": "org.yezebi.goomba"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "117443118028-ijni7uak93rl9gqp1ljsul7nadar47f1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtbxDca7fNF2LEdI-MlIrMlZ5_HFdIP9c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "117443118028-ijni7uak93rl9gqp1ljsul7nadar47f1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
