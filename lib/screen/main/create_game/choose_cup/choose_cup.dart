@@ -6,10 +6,15 @@ import 'package:goomba/data/data.dart';
 import 'package:goomba/store/store.dart';
 import 'package:goomba/theme/theme.dart';
 
+import '../create_game_store.dart';
 import 'cup_tile.dart';
 
 class ChooseCupStep extends StatelessWidget {
   const ChooseCupStep({super.key});
+
+  void _selectCup(BuildContext context, Cup cup) {
+    context.read<CreateGameStore>().setCup(cup);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +39,7 @@ class ChooseCupStep extends StatelessWidget {
             itemBuilder: (context, index) {
               return CupTile(
                 cup: cups[index],
+                onTap: (e) => _selectCup(context, e),
               );
             },
           );

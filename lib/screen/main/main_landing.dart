@@ -45,13 +45,8 @@ class MainLanding extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   GbaButton.text(
-                    'Créer une partie',
+                    'Create a new game',
                     onTap: () => _openCreateGame(context),
-                  ),
-                  const Gap(kSpacer),
-                  GbaButton.text(
-                    'Rejoindre une partie',
-                    onTap: () {},
                   ),
                 ],
               ),

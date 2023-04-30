@@ -8,6 +8,7 @@ class GbaTextField extends StatelessWidget {
   final String name;
   final TextInputAction action;
   final TextInputType type;
+  final bool autocorrect;
   final bool enableSuggestion;
   final VoidCallback? onSubmitted;
 
@@ -16,6 +17,7 @@ class GbaTextField extends StatelessWidget {
     required this.name,
     this.action = TextInputAction.next,
     this.type = TextInputType.text,
+    this.autocorrect = true,
     this.enableSuggestion = true,
     this.onSubmitted,
     super.key,
@@ -23,35 +25,24 @@ class GbaTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: context.textStyle.bodyMedium?.copyWith(),
+    return ReactiveTextField(
+      formControlName: name,
+      textInputAction: action,
+      keyboardType: type,
+      autocorrect: autocorrect,
+      enableSuggestions: enableSuggestion,
+      onSubmitted: onSubmitted != null ? (_) => onSubmitted!.call() : null,
+      decoration: InputDecoration(
+        border: InputBorder.none,
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 15,
+          vertical: 15,
         ),
-        const Gap(10),
-        ReactiveTextField(
-          formControlName: name,
-          textInputAction: action,
-          keyboardType: type,
-          enableSuggestions: enableSuggestion,
-          onSubmitted: onSubmitted != null ? (_) => onSubmitted!.call() : null,
-          decoration: InputDecoration(
-            border: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(10),
-              ),
-            ),
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 15,
-              vertical: 15,
-            ),
-            hintText: label,
-            hintStyle: context.textStyle.bodyMedium?.copyWith(),
-          ),
+        hintText: label,
+        hintStyle: context.textStyle.titleLarge?.copyWith(
+          color: context.textStyle.bodyMedium?.color,
         ),
-      ],
+      ),
     );
   }
 }

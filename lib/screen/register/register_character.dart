@@ -25,19 +25,22 @@ class RegisterCharacterStep extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      bottomNavigationBar: BottomAppBar(
-        elevation: 0,
-        color: Colors.transparent,
-        child: BlocSelector<RegisterStore, RegisterState, Character?>(
-          selector: (state) => state.character,
-          builder: (context, selectedCharacter) {
-            return GbaButton.text(
-              'Next',
-              onTap:
-                  selectedCharacter == null ? null : () => _register(context),
-            );
-          },
-        ),
+      bottomNavigationBar:
+          BlocSelector<RegisterStore, RegisterState, Character?>(
+        selector: (state) => state.character,
+        builder: (context, character) {
+          if (character == null) {
+            return Container();
+          }
+
+          return BottomAppBar(
+            color: Colors.transparent,
+            child: GbaButton.text(
+              'Continue',
+              onTap: () => _register(context),
+            ),
+          );
+        },
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(kSafeArea),
@@ -45,7 +48,7 @@ class RegisterCharacterStep extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              'Next, choose your character',
+              'Next, choose your main character',
               style: context.textStyle.titleMedium?.copyWith(),
             ),
             const Gap(kSpacer),

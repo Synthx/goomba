@@ -7,7 +7,8 @@ part 'register_state.freezed.dart';
 class RegisterState with _$RegisterState {
   const factory RegisterState({
     required bool loading,
-    required String? nickname,
+    required String? name,
+    required String? username,
     required Character? character,
   }) = _RegisterState;
 }

@@ -15,7 +15,7 @@ ThemeData generateThemeData({
     scaffoldBackgroundColor: background,
     cardColor: card,
     appBarTheme: AppBarTheme(
-      elevation: 1,
+      elevation: 0,
       centerTitle: true,
       color: background,
       iconTheme: IconThemeData(
@@ -27,12 +27,12 @@ ThemeData generateThemeData({
       ),
     ),
     bottomAppBarTheme: BottomAppBarTheme(
-      elevation: 1,
+      elevation: 0,
       color: background,
       padding: const EdgeInsets.all(kSafeArea),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      elevation: 1,
+      elevation: 0,
       showSelectedLabels: false,
       showUnselectedLabels: false,
       backgroundColor: background,

@@ -6,8 +6,18 @@ import 'package:goomba/store/store.dart';
 import 'package:goomba/theme/theme.dart';
 import 'package:goomba/widget/widget.dart';
 
+import '../create_game_store.dart';
+
 class ChooseCharacterStep extends StatelessWidget {
   const ChooseCharacterStep({super.key});
+
+  void _selectCharacter(BuildContext context, Character character) {
+    context.read<CreateGameStore>().setCharacter(character);
+  }
+
+  void _goToPreviousStep(BuildContext context) {
+    context.read<CreateGameStore>().goToPreviousStep();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +25,7 @@ class ChooseCharacterStep extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.chevron_left),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => _goToPreviousStep(context),
         ),
         title: const Text('Character'),
       ),
@@ -35,6 +45,7 @@ class ChooseCharacterStep extends StatelessWidget {
             itemBuilder: (context, index) {
               return CharacterTile(
                 character: characters[index],
+                onTap: (e) => _selectCharacter(context, e),
               );
             },
           );

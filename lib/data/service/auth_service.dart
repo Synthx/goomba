@@ -1,10 +1,23 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:goomba/core/core.dart';
 import 'package:goomba/data/data.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   final _auth = FirebaseAuth.instance;
-  final _db = FirebaseFirestore.instance;
+
+  AuthService() {
+    _auth.idTokenChanges().listen((user) async {
+      final preferences = await SharedPreferences.getInstance();
+      if (user == null) {
+        await preferences.remove('token');
+      } else {
+        final token = await user.getIdToken();
+        await preferences.setString('token', token);
+      }
+    });
+  }
 
   Future<Player?> load() async {
     var user = await _auth.userChanges().first;
@@ -13,16 +26,25 @@ class AuthService {
       user = credential.user;
     }
 
-    final doc = await _db.collection('users').doc(user!.uid).get();
-    if (!doc.exists) {
+    final token = await user?.getIdToken(true);
+    final response = await http.get(
+      'api/auth',
+      options: Options(
+        headers: {'Authorization': 'Bearer $token'},
+      ),
+    );
+
+    final data = response.data;
+    if (data == null) {
       return null;
     }
 
-    return Player.fromJson(doc.data()!);
+    return Player.fromJson(data);
   }
 
   Future<Player> register({
-    required String nickname,
+    required String name,
+    required String username,
     required Character character,
   }) async {
     final user = _auth.currentUser;
@@ -30,20 +52,11 @@ class AuthService {
       throw Exception('User is not logged in');
     }
 
-    final reference = _db.collection('users').doc(user.uid);
-    final doc = await reference.get();
-    if (doc.exists) {
-      throw Exception('User already exists');
-    }
-
-    final player = Player(
-      id: user.uid,
-      username: nickname,
-      characterId: character.id,
-    );
-
-    await reference.set(player.toJson());
-
-    return player;
+    final response = await http.post('/api/auth', data: {
+      'name': name,
+      'username': username,
+      'characterId': character.id,
+    });
+    return Player.fromJson(response.data);
   }
 }

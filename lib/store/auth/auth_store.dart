@@ -20,11 +20,13 @@ class AuthStore extends Cubit<AuthState> {
   }
 
   Future register({
-    required String nickname,
+    required String name,
+    required String username,
     required Character character,
   }) async {
     final player = await authService.register(
-      nickname: nickname,
+      name: name,
+      username: username,
       character: character,
     );
     emit(state.copyWith(

@@ -6,14 +6,16 @@ import 'package:goomba/store/store.dart';
 import 'register_state.dart';
 
 class RegisterStore extends Cubit<RegisterState> {
+  static final pageController = PageController();
+
   final AuthStore authStore;
-  final pageController = PageController();
 
   RegisterStore({
     required this.authStore,
   }) : super(const RegisterState(
           loading: false,
-          nickname: null,
+          name: null,
+          username: null,
           character: null,
         ));
 
@@ -23,8 +25,16 @@ class RegisterStore extends Cubit<RegisterState> {
     return super.close();
   }
 
-  Future setNickname(String nickname) async {
-    emit(state.copyWith(nickname: nickname));
+  Future setName(String name) async {
+    emit(state.copyWith(name: name));
+    await pageController.nextPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  Future setUsername(String username) async {
+    emit(state.copyWith(username: username));
     await pageController.nextPage(
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
@@ -38,7 +48,8 @@ class RegisterStore extends Cubit<RegisterState> {
   Future register() async {
     emit(state.copyWith(loading: true));
     await authStore.register(
-      nickname: state.nickname!,
+      name: state.name!,
+      username: state.username!,
       character: state.character!,
     );
     emit(state.copyWith(loading: false));

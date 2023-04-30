@@ -13,6 +13,7 @@ class Character with _$Character {
   const factory Character({
     required int id,
     required String name,
+    required String color,
     required CharacterCategory category,
   }) = _Character;
 

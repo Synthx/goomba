@@ -17,7 +17,7 @@ class RegisterNicknameStep extends StatefulWidget {
 
 class _RegisterNicknameStepState extends State<RegisterNicknameStep> {
   final _nicknameForm = fb.group({
-    'nickname': ['', Validators.required],
+    'username': ['', Validators.required],
   });
 
   @override
@@ -27,8 +27,8 @@ class _RegisterNicknameStepState extends State<RegisterNicknameStep> {
   }
 
   void _goToNextStep() {
-    final nickname = _nicknameForm.value['nickname'] as String;
-    context.read<RegisterStore>().setNickname(nickname);
+    final username = _nicknameForm.value['username'] as String;
+    context.read<RegisterStore>().setUsername(username);
   }
 
   @override
@@ -37,19 +37,20 @@ class _RegisterNicknameStepState extends State<RegisterNicknameStep> {
       formGroup: _nicknameForm,
       child: Scaffold(
         bottomNavigationBar: BottomAppBar(
-          elevation: 0,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 'Your username is unique\nand will be visible to everyone',
                 textAlign: TextAlign.center,
                 style: context.textStyle.bodyMedium?.copyWith(),
               ),
-              const Gap(5),
+              const Gap(kSpacer),
               ReactiveFormConsumer(
                 builder: (context, form, child) {
                   return GbaButton.text(
-                    'Next',
+                    'Continue',
                     onTap: form.invalid ? null : () => _goToNextStep(),
                   );
                 },
@@ -63,13 +64,15 @@ class _RegisterNicknameStepState extends State<RegisterNicknameStep> {
           child: Column(
             children: [
               Text(
-                'Let\'s get started, create your username',
+                'Next, create your username',
+                textAlign: TextAlign.center,
                 style: context.textStyle.titleMedium?.copyWith(),
               ),
               const Gap(kSpacer),
               const GbaTextField(
                 label: 'Your username',
-                name: 'nickname',
+                name: 'username',
+                autocorrect: false,
                 enableSuggestion: false,
               ),
             ],

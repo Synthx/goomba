@@ -5,6 +5,7 @@ import 'choose_character/choose_character.dart';
 import 'choose_cup/choose_cup.dart';
 import 'choose_player/choose_player.dart';
 import 'create_game_store.dart';
+import 'game_summary/game_summary.dart';
 
 class CreateGameDialog extends StatelessWidget {
   const CreateGameDialog({super.key});
@@ -21,6 +22,7 @@ class CreateGameDialog extends StatelessWidget {
             ChooseCupStep(),
             ChooseCharacterStep(),
             ChoosePlayerStep(),
+            CreateGameSummary(),
           ],
         ),
       ),

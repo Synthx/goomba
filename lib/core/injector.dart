@@ -5,4 +5,5 @@ final getIt = GetIt.instance;
 
 void setupInjector() {
   getIt.registerLazySingleton(() => AuthService());
+  getIt.registerLazySingleton(() => PlayerService());
 }

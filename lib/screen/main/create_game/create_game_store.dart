@@ -37,6 +37,21 @@ class CreateGameStore extends Cubit<CreateGameState> {
     );
   }
 
+  Future setPlayers(List<Player> players) async {
+    emit(state.copyWith(players: players));
+    pageController.nextPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  Future goToPreviousStep() async {
+    pageController.previousPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
   Future save() async {
     emit(state.copyWith(loading: true));
     await Future.delayed(const Duration(seconds: 1));
