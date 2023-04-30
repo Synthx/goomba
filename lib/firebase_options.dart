@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '117443118028',
     projectId: 'goomba-c4427',
     storageBucket: 'goomba-c4427.appspot.com',
-    iosClientId: '117443118028-b9sa48njlddgcbgscs8f9apme97bv4q4.apps.googleusercontent.com',
+    iosClientId:
+        '117443118028-b9sa48njlddgcbgscs8f9apme97bv4q4.apps.googleusercontent.com',
     iosBundleId: 'org.yezebi.goomba',
   );
 }
