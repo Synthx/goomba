@@ -12,10 +12,6 @@ import 'choose_player_store.dart';
 class ChoosePlayerList extends StatelessWidget {
   const ChoosePlayerList({super.key});
 
-  void _addPlayer(BuildContext context, Player player) {
-    context.read<ChoosePlayerStore>().addPlayer(player);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(

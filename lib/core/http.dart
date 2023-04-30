@@ -36,7 +36,8 @@ class _LoggerInterceptor extends Interceptor {
 
 class _TokenInterceptor extends Interceptor {
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+  void onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
     if (options.headers.containsKey('no-auth')) {
       options.headers.remove('no-auth');
       return handler.next(options);
